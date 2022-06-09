@@ -1,0 +1,19 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 60rem;
+  height: 60rem;
+  margin: 10rem;
+
+  background-color: rgb(182, 181, 181);
+  border-radius: 1.5rem;
+}
