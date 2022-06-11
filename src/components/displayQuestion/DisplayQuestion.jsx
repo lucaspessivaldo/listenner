@@ -5,15 +5,14 @@ import { numberAudiosArray } from '../../audios/numberAudios/numberAudiosArray.j
 export default function DisplayQuestion() {
   const [arrayItem, setArrayItem] = useState(10)
   const [isStarting, setIsStarting] = useState(false)
+  const [isNumberArrayChanged, setIsNumberArrayChanged] = useState(false)
   const myAudio = new Audio(numberAudiosArray[arrayItem].audio)
 
   useEffect(() => {
     if (isStarting) {
       myAudio.play()
     }
-  }, [arrayItem])
-
-  // console.log(arrayItem, numberAudiosArray[arrayItem])
+  }, [arrayItem, isNumberArrayChanged, isStarting])
 
   function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -29,13 +28,13 @@ export default function DisplayQuestion() {
       } else {
         console.log('wrong')
       }
-      setArrayItem(prev => getRandomIntInclusive(0, numberAudiosArray.length - 1))  //0 is the min number
+      setArrayItem(getRandomIntInclusive(0, numberAudiosArray.length - 1))  //0 is the min number
+      setIsNumberArrayChanged(!isNumberArrayChanged)
       event.target.value = '';
     }
   }
 
   function startQuestion() {
-    myAudio.play()
     setIsStarting(true)
   }
 
