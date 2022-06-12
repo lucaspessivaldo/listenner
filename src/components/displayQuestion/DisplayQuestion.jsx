@@ -3,11 +3,15 @@ import './displayQuestion.css'
 import { numberAudiosArray } from '../../audios/numberAudios/numberAudiosArray.js'
 
 export default function DisplayQuestion() {
+  const intervalId = useRef(0);
+  const inputRef = useRef()
+
   const [arrayItem, setArrayItem] = useState(10)
   const [isStarting, setIsStarting] = useState(false)
   const [isNumberArrayChanged, setIsNumberArrayChanged] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
-  const inputRef = useRef()
+  const [isReadOnly, setIsReadOnly] = useState(false)
+
   const currentAudio = new Audio(numberAudiosArray[arrayItem].audio)
 
   useEffect(() => {
@@ -23,11 +27,30 @@ export default function DisplayQuestion() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function handleInput(event) {
-    if (isStarting && numberAudiosArray[arrayItem].name === event.target.value) {
+  const handleEnterTimer = (timerValue) => {
+    if (intervalId.current) {
+      clearInterval(intervalId.current);
+      intervalId.current = 0;
+    }
+
+    const newIntervalId = setInterval(() => {
+      inputRef.current.value = ''
+      inputRef.current.className = 'input-answer'
       setArrayItem(getRandomIntInclusive(0, numberAudiosArray.length - 1))  //0 is the min number
       setIsNumberArrayChanged(!isNumberArrayChanged)
-      event.target.value = '';
+      setIsReadOnly(false)
+
+      clearInterval(intervalId.current)
+    }, timerValue);
+
+    intervalId.current = newIntervalId;
+  };
+
+  function handleInput(event) {
+    if (isStarting && numberAudiosArray[arrayItem].name === event.target.value) {
+      handleEnterTimer(300) //Milliseconds
+      setIsReadOnly(true)
+      inputRef.current.className = 'right_answer input-answer'
     }
   }
 
@@ -56,6 +79,7 @@ export default function DisplayQuestion() {
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           disabled={isStarting ? false : true}
+          readOnly={isReadOnly ? 'readonly' : ''}
         />
         <button
           onClick={() => startQuestion()}>
