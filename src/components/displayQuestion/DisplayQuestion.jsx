@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './displayQuestion.css'
 import { numberAudiosArray } from '../../audios/numberAudios/numberAudiosArray.js'
 
@@ -7,11 +7,13 @@ export default function DisplayQuestion() {
   const [isStarting, setIsStarting] = useState(false)
   const [isNumberArrayChanged, setIsNumberArrayChanged] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
+  const inputRef = useRef()
   const currentAudio = new Audio(numberAudiosArray[arrayItem].audio)
 
   useEffect(() => {
     if (isStarting) {
       currentAudio.play()
+      inputRef.current.focus()
     }
   }, [arrayItem, isNumberArrayChanged, isStarting])
 
@@ -22,7 +24,7 @@ export default function DisplayQuestion() {
   }
 
   function handleInput(event) {
-    if (numberAudiosArray[arrayItem].name === event.target.value) {
+    if (isStarting && numberAudiosArray[arrayItem].name === event.target.value) {
       setArrayItem(getRandomIntInclusive(0, numberAudiosArray.length - 1))  //0 is the min number
       setIsNumberArrayChanged(!isNumberArrayChanged)
       event.target.value = '';
@@ -38,7 +40,7 @@ export default function DisplayQuestion() {
   }
 
   function startQuestion() {
-    setIsStarting(true)
+    setIsStarting(!isStarting)
   }
 
   return (
@@ -48,12 +50,17 @@ export default function DisplayQuestion() {
         <input
           className='input-answer'
           type="text"
+          ref={inputRef}
           onChange={handleInput}
           placeholder={isFocus ? '' : 'Type your answer here'}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
+          disabled={isStarting ? false : true}
         />
-        <button onClick={() => startQuestion()}>Start</button>
+        <button
+          onClick={() => startQuestion()}>
+          {isStarting ? 'Stop' : 'Start'}
+        </button>
       </div>
     </div>
   )
