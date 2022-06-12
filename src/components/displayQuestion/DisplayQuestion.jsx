@@ -6,11 +6,11 @@ export default function DisplayQuestion() {
   const [arrayItem, setArrayItem] = useState(10)
   const [isStarting, setIsStarting] = useState(false)
   const [isNumberArrayChanged, setIsNumberArrayChanged] = useState(false)
-  const myAudio = new Audio(numberAudiosArray[arrayItem].audio)
+  const currentAudio = new Audio(numberAudiosArray[arrayItem].audio)
 
   useEffect(() => {
     if (isStarting) {
-      myAudio.play()
+      currentAudio.play()
     }
   }, [arrayItem, isNumberArrayChanged, isStarting])
 
