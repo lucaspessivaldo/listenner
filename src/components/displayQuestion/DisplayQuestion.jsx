@@ -82,6 +82,7 @@ export default function DisplayQuestion() {
           readOnly={isReadOnly ? 'readonly' : ''}
         />
         <button
+          className='button_numberDisplay'
           onClick={() => startQuestion()}>
           {isStarting ? 'Stop' : 'Start'}
         </button>

@@ -32,7 +32,7 @@
   font-size: 5rem;
 }
 
-button {
+.button_numberDisplay {
   width: 19rem;
   height: 5rem;
 
@@ -48,7 +48,7 @@ button {
   outline: none;
 }
 
-button:hover {
+.button_numberDisplay:hover {
   background-color: rgb(26, 26, 26);
 }
 
