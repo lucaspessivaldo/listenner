@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import { numberAudiosArray } from '../../audios/numberAudios/numberAudiosArray.js'
-import './displayQuestion.css'
+import { alphabetAudiosArray } from '../../audios/alphabetAudios/alphabetAudiosArray'
+import './alphabetPage.css'
 
-export default function DisplayQuestion() {
+export default function AlphabetPage() {
   const intervalId = useRef(0);
   const inputRef = useRef()
 
@@ -12,7 +12,7 @@ export default function DisplayQuestion() {
   const [isFocus, setIsFocus] = useState(false)
   const [isReadOnly, setIsReadOnly] = useState(false)
 
-  const currentAudio = new Audio(numberAudiosArray[arrayItem].audio)
+  const currentAudio = new Audio(alphabetAudiosArray[arrayItem].audio)
 
   useEffect(() => {
     if (isStarting) {
@@ -35,8 +35,8 @@ export default function DisplayQuestion() {
 
     const newIntervalId = setInterval(() => {
       inputRef.current.value = ''
-      inputRef.current.className = 'input-answer'
-      setArrayItem(getRandomIntInclusive(0, numberAudiosArray.length - 1))  //0 is the min number
+      inputRef.current.className = 'numberPage_input_answer'
+      setArrayItem(getRandomIntInclusive(0, alphabetAudiosArray.length - 1))  //0 is the min number
       setIsNumberArrayChanged(!isNumberArrayChanged)
       setIsReadOnly(false)
 
@@ -47,10 +47,10 @@ export default function DisplayQuestion() {
   };
 
   function handleInput(event) {
-    if (isStarting && numberAudiosArray[arrayItem].name === event.target.value) {
+    if (isStarting && alphabetAudiosArray[arrayItem].name === event.target.value) {
       handleEnterTimer(300) //Milliseconds
       setIsReadOnly(true)
-      inputRef.current.className = 'right_answer input-answer'
+      inputRef.current.className = 'numberPage_right_answer  numberPage_input_answer'
     }
   }
 
@@ -67,22 +67,22 @@ export default function DisplayQuestion() {
   }
 
   return (
-    <div className="main-container">
-      <div className='display-box'>
-        <div className='question-text'>Question</div>
+    <div className="numberPage_main_container">
+      <div className='numberPage_display-box'>
+        <div className='numberPage_main_text'>Alphabet</div>
         <input
-          className='input-answer'
+          className='numberPage_input_answer'
           type="text"
           ref={inputRef}
           onChange={handleInput}
-          placeholder={isFocus ? '' : 'Type your answer here'}
+          placeholder={isFocus ? '' : 'Type the letter here'}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           disabled={isStarting ? false : true}
           readOnly={isReadOnly ? 'readonly' : ''}
         />
         <button
-          className='button_numberDisplay'
+          className='numberPage_button'
           onClick={() => startQuestion()}>
           {isStarting ? 'Stop' : 'Start'}
         </button>

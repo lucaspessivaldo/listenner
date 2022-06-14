@@ -6,8 +6,7 @@ function HomePage() {
     <div className="home_container">
       <div className='home_buttons_container'>
         <Link className='homepage_button' to={'/number'}><button className='homepage_button'>Number</button></Link>
-        <button className='homepage_button'>Ordinal Numbers</button>
-        <button className='homepage_button'>Alphabet</button>
+        <Link className='homepage_button' to={'/alphabet'}><button className='homepage_button'>Alphabet</button></Link>
         <button className='homepage_button'>Minimal Pairs</button>
       </div>
     </div>

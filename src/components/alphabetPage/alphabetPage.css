@@ -1,4 +1,4 @@
-.main-container {
+.numberPage_main_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.display-box {
+.numberPage_display-box {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -21,18 +21,18 @@
   border-radius: 1.5rem;
 }
 
-.question-text {
+.numberPage_main_text {
   font-size: 10rem;
 }
 
-.input-answer {
+.numberPage_input_answer {
   height: 9rem;
   width: 90%;
   text-align: center;
   font-size: 5rem;
 }
 
-.button_numberDisplay {
+.numberPage_button {
   width: 19rem;
   height: 5rem;
 
@@ -48,11 +48,11 @@
   outline: none;
 }
 
-.button_numberDisplay:hover {
+.numberPage_button:hover {
   background-color: rgb(26, 26, 26);
 }
 
-.right_answer {
+.numberPage_right_answer {
   color: green;
   font-weight: bold;
 }

@@ -1,6 +1,7 @@
 import HomePage from './components/homePage/HomePage.jsx';
 import Header from './components/header/Header.jsx';
-import DisplayQuestion from './components/displayQuestion/DisplayQuestion.jsx'
+import NumberPage from './components/numberPage/NumberPage.jsx'
+import AlphabetPage from './components/alphabetPage/AlphabetPage.jsx'
 import {
   BrowserRouter,
   Routes,
@@ -13,7 +14,8 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/number' element={<DisplayQuestion />} />
+        <Route path='/number' element={<NumberPage />} />
+        <Route path='/Alphabet' element={<AlphabetPage />} />
       </Routes>
     </BrowserRouter>
   )
