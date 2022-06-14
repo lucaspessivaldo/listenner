@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
-import './displayQuestion.css'
 import { numberAudiosArray } from '../../audios/numberAudios/numberAudiosArray.js'
+import './displayQuestion.css'
 
 export default function DisplayQuestion() {
   const intervalId = useRef(0);

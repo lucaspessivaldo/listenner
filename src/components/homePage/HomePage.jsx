@@ -15,10 +15,3 @@ function HomePage() {
 }
 
 export default HomePage
-
-
-
-{/* <Menu>
-   <MenuItem component={Link} to={'/first'}>Team 1</MenuItem>
-   <MenuItem component={Link} to={'/second'}>Team 2</MenuItem>
-</Menu> */}
