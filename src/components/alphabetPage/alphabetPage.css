@@ -53,6 +53,21 @@
 }
 
 .numberPage_right_answer {
-  color: green;
+  color: rgb(90, 172, 90);
   font-weight: bold;
+}
+
+@media (max-width: 400px) {
+  .home_buttons_container {
+    width: 95%;
+    height: auto;
+  }
+
+  .numberPage_input_answer {
+    height: 9rem;
+    width: 90%;
+    text-align: center;
+    font-size: 2em;
+  }
+
 }

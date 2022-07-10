@@ -69,7 +69,7 @@ export default function DisplayQuestion() {
   return (
     <div className="numberPage_main_container">
       <div className='numberPage_display-box'>
-        <div className='numberPage_main_text'>Question</div>
+        <div className='numberPage_main_text'>Numbers</div>
         <input
           className='numberPage_input_answer'
           type="text"

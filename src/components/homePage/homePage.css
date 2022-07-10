@@ -40,3 +40,11 @@
 .homepage_button:hover {
   background-color: rgb(24, 24, 24);
 }
+
+@media (max-width: 400px) {
+  .home_buttons_container {
+    width: 95%;
+    height: auto;
+  }
+
+}
