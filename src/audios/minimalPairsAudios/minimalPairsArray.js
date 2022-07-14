@@ -17,7 +17,7 @@ import it from './008-it.mp3';
 import bean from './009-bean.mp3';
 import bin from './009-bin.mp3';
 
-export const alphabetAudiosArray = [
+export const minimalPairsArray = [
   { word: 'seat', audio: seat, phonetic: 'sit' },
   { word: 'sit', audio: sit, phonetic: 'sit' },
 
