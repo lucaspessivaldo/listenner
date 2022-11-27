@@ -8,9 +8,14 @@ export default function Navbar() {
           <img className='w-6 h-6' src={logo} alt="logo" />
           <div className='font-inter font-semibold  text-2xl'>english</div>
         </div>
-        <button className="bg-blue-600 font-inter font-semibold text-sm text-white px-4 py-2 my-2 rounded-md hover:bg-blue-700">
-          Get Started
-        </button>
+        <div className='flex gap-2'>
+          <button className="font-inter font-semibold text-sm  px-4 hover:underline">
+            Login
+          </button>
+          <button className="bg-blue-600 border-2 border-blue-600 font-inter font-semibold text-sm text-white px-4 py-1 my-2 rounded-md hover:bg-white hover:text-blue-600">
+            Sign up
+          </button>
+        </div>
       </nav>
     </header>
   )

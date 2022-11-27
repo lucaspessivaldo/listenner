@@ -3,7 +3,7 @@ export default function PolygonSvg() {
     <div className="sm:mr-4">
       <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
         <svg
-          className="w-12 h-12 text-deep-purple-accent-400"
+          className="w-12 h-12 text-blue-900"
           stroke="currentColor"
           viewBox="0 0 52 52"
         >
