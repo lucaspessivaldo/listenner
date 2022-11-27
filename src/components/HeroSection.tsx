@@ -1,4 +1,5 @@
 import ilustationSVG from '../assets/images/homepage.svg'
+import { Link } from 'react-router-dom'
 
 export default function HeroSection() {
   return (
@@ -7,13 +8,15 @@ export default function HeroSection() {
         Improve your listening in english.
       </div>
 
-      <div className="font-inter font-semibold text-gray-800">
+      <div className="font-inter text-gray-800">
         Listening skills are an essential part of good communication.
       </div>
 
-      <button className="border-2 border-black font-inter font-semibold text-sm px-9 py-3 sm:px-16 sm:py-3 my-2 rounded-md mt-6 hover:text-white hover:bg-black">
-        Get Started
-      </button>
+      <Link to="/learn">
+        <button className="border-2 border-black font-inter font-semibold text-sm px-9 py-3 sm:px-16 sm:py-3 my-2 rounded-md mt-6 hover:text-white hover:bg-black">
+          Get Started
+        </button>
+      </Link>
 
       <img className="mx-auto" src={ilustationSVG} alt="Illustration people talking" />
     </div>
