@@ -1,4 +1,4 @@
-import ilustationSVG from '../assets/images/homepage.svg'
+import ilustationSVG from '../../assets/images/homepage.svg'
 import { Link } from 'react-router-dom'
 
 export default function HeroSection() {

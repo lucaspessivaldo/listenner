@@ -1,5 +1,5 @@
-import HeroSection from '../components/HeroSection'
-import Features from '../components/Features'
+import HeroSection from '../components/homepage/HeroSection'
+import Features from '../components/homepage/Features'
 
 export default function Home() {
   return (
