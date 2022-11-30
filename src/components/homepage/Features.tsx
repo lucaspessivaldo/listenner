@@ -27,7 +27,7 @@ export default function Features() {
         </div>
 
         <div className="grid max-w-md gap-8 row-gap-10  lg:max-w-full lg:grid-cols-3 md:max-w-full">
-          {featureData.map((prop: FeatureItemProp) => <FeatureItem title={prop.title} text={prop.text} />)}
+          {featureData.map((prop, index) => <FeatureItem key={index} title={prop.title} text={prop.text} />)}
         </div>
 
       </div>
