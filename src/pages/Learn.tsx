@@ -32,7 +32,7 @@ export default function Learn() {
 
       <div
         onClick={() => {
-          const currentAudio = new Audio(alphabetAudiosArray[2].audio)
+          const currentAudio = alphabetAudiosArray[2].audio
           currentAudio.pause()
           currentAudio.play()
         }}
