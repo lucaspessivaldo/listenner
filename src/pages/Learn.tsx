@@ -1,8 +1,8 @@
 import QuestionButton from '../components/learn/QuestionButton'
 import SelectCategory from '../components/learn/SelectCategory'
-import SpeakerSvg from '../components/learn/SpeakerSvg'
 import alphabetAudiosArray from '../assets/audios/alphabet/alphabetAudios'
 import { AudioArray } from '../common/types'
+import SpeakerButton from '../components/learn/SpeakerButton'
 
 import { useEffect, useState } from 'react'
 
@@ -22,11 +22,13 @@ function getRandomPosition(array: AudioArray[]) {
 export default function Learn() {
   const [currentWords, setCurrentWords] = useState<AudioArray[]>([alphabetAudiosArray[0]])
   const [rightAnswer, setRightAnswer] = useState<AudioArray>(alphabetAudiosArray[0])
+  const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
   const [selectedButton, setSelectedButton] = useState<String>('')
 
-  useEffect(() => {
+  const restartQuestion = () => {
     let firstWord = getRandomPosition(alphabetAudiosArray)
     let secondWord = getRandomPosition(alphabetAudiosArray)
+    firstWord.audio.play()
 
     while (secondWord.text === firstWord.text) {
       secondWord = getRandomPosition(alphabetAudiosArray)
@@ -37,6 +39,22 @@ export default function Learn() {
 
     setRightAnswer(firstWord)
     setCurrentWords(array)
+  }
+
+  const checkAnswer = () => {
+    if (isAnswerd) {
+      setIsAnswerd(false)
+      setSelectedButton('')
+      restartQuestion()
+      return
+    }
+    const isRightAnswer = selectedButton === rightAnswer.text
+    setIsAnswerd(true)
+    console.log(isRightAnswer)
+  }
+
+  useEffect(() => {
+    restartQuestion()
   }, [])
 
   return (
@@ -44,21 +62,10 @@ export default function Learn() {
       <SelectCategory />
       <p className='font-inter text-2xl'>What did you listen to?</p>
 
-      <div
-        onClick={() => {
-          rightAnswer.audio.pause()
-          rightAnswer.audio.play()
+      <SpeakerButton audio={rightAnswer.audio} />
 
-        }}
-        className='cursor-pointer border-2 border-black w-40 h-40 flex items-center justify-center rounded-3xl 
-        shadow-[5px_5px_0px_rgb(0,0,0)] active:shadow-[1px_1px_0px_rgb(0,0,0)] text-black
-        ease-out active:translate-y-1 my-10 transition-all'
-      >
-        <SpeakerSvg />
-      </div>
-
-      <div className='text-zinc-600 font-inter'>
-        select the right answer
+      <div className={` font-inter  ${isAnswerd ? ((selectedButton === rightAnswer.text) ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold') : 'text-zinc-900'}`}>
+        {isAnswerd ? ((selectedButton === rightAnswer.text) ? 'Right' : 'Wrong') : 'select the right answer'}
       </div>
 
       <div className='mb-7 grid grid-cols-1 sm:grid-cols-2'>
@@ -73,8 +80,11 @@ export default function Learn() {
         ))}
       </div>
 
-      <button className='bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900'>
-        check the answer
+      <button
+        className='bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900'
+        onClick={() => checkAnswer()}
+      >
+        {isAnswerd ? 'next ->' : 'check the answer'}
       </button>
     </div>
   )
