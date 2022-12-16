@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { PersonIcon } from '@radix-ui/react-icons';
 import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
