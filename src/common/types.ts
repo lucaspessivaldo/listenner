@@ -1,4 +1,5 @@
-export interface AudioArray {
+export interface WordsArray {
   text: string
+  phonetic: string
   audio: HTMLAudioElement
 }
