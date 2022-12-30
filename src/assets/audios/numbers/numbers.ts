@@ -1,4 +1,4 @@
-import { AudioArray } from '../../../common/types'
+import { WordsArray } from '../../../common/types'
 
 import zero from './0.mp3'
 import one from './1.mp3'
@@ -22,7 +22,7 @@ import eighteen from './18.mp3'
 import nineteen from './19.mp3'
 import twenty from './20.mp3'
 
-const numbers: Array<AudioArray> = [
+const numbers: Array<WordsArray> = [
   { text: '0', audio: new Audio(zero), phonetic: '' },
   { text: '1', audio: new Audio(one), phonetic: '' },
   { text: '2', audio: new Audio(two), phonetic: '' },
