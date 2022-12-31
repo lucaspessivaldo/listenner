@@ -15,7 +15,7 @@ import {
 import Learn from './pages/Learn'
 
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
