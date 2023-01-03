@@ -105,9 +105,9 @@ export default function MainDisplay() {
           <QuestionButton
             setSelectedButton={setSelectedButton}
             isSelected={word.text === selectedButton}
-            audio={word.audio}
             text={word.text}
             isAnswerd={isAnswerd}
+            rightAnser={rightAnswer.text}
             key={word.text}
           />
         ))}
