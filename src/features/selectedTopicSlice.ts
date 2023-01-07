@@ -6,7 +6,7 @@ export interface selectedTopicsState {
 }
 
 const initialState: selectedTopicsState = {
-  value: 'Alphabet',
+  value: 'Minimal Pair',
 }
 
 export const selectedTopic = createSlice({

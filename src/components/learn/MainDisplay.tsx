@@ -76,7 +76,6 @@ export default function MainDisplay() {
     else wrong.play()
 
     setIsAnswerd(true)
-    console.log(isRightAnswer)
   }
 
   useEffect(() => {
@@ -86,7 +85,6 @@ export default function MainDisplay() {
   useEffect(() => {
     if (selectedButton === '') return
     checkAnswer()
-
   }, [selectedButton])
 
 
