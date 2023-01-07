@@ -56,6 +56,10 @@ export default function MinimalPairsDisplay() {
   }
 
   useEffect(() => {
+    restartQuestion()
+  }, [])
+
+  useEffect(() => {
     if (selectedButton === '') return
     checkAnswer()
   }, [selectedButton])
