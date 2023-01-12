@@ -80,6 +80,7 @@ export default function MinimalPairsDisplay() {
           <ButtonMinimalPairs
             text={word.text}
             phonetic={word.phonetic}
+            audio={word.audio}
             isAnswerd={isAnswerd}
             isSelected={word.text === selectedButton}
             rightAnser={rightAnswer.text}

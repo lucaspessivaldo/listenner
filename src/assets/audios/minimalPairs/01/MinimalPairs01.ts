@@ -2,14 +2,54 @@ import { WordsArray } from '../../../../common/types'
 
 import bean from './bean.mp3'
 import bin from './bin.mp3'
+
 import cheap from './cheap.mp3'
 import chip from './chip.mp3'
+
 import eat from './eat.mp3'
 import it from './it.mp3'
+
 import hes from './hes.mp3'
 import his from './his.mp3'
+
 import seat from './seat.mp3'
 import sit from './sit.mp3'
+
+import did from './did.mp3'
+import deed from './deed.mp3'
+
+import fill from './fill.mp3'
+import feel from './feel.mp3'
+
+import fit from './fit.mp3'
+import feet from './feet.mp3'
+
+import grin from './grin.mp3'
+import green from './green.mp3'
+
+import hit from './hit.mp3'
+import heat from './heat.mp3'
+
+import is from './is.mp3'
+import ease from './ease.mp3'
+
+import mitt from './mitt.mp3'
+import meet from './meet.mp3'
+
+import slip from './slip.mp3'
+import sleep from './sleep.mp3'
+
+import still from './still.mp3'
+import steal from './steal.mp3'
+
+import bit from './bit.mp3'
+import beat from './beat.mp3'
+
+import bitch from './bitch.mp3'
+import beach from './beach.mp3'
+
+import itch from './itch.mp3'
+import each from './each.mp3'
 
 const MinimalPairs01: WordsArray[][] = [
   [
@@ -36,7 +76,68 @@ const MinimalPairs01: WordsArray[][] = [
   [
     { text: 'Seat', audio: new Audio(seat), phonetic: '/sit/' },
     { text: 'Sit', audio: new Audio(sit), phonetic: '/sɪt/' }
-  ]
+  ],
+
+  [
+    { text: 'Did', audio: new Audio(did), phonetic: '/dɪd/' },
+    { text: 'Deed', audio: new Audio(deed), phonetic: '/did/' }
+  ],
+
+  [
+    { text: 'fill', audio: new Audio(fill), phonetic: '/fɪl/' },
+    { text: 'feel', audio: new Audio(feel), phonetic: '/fil/' }
+  ],
+
+  [
+    { text: 'fit', audio: new Audio(fit), phonetic: '/fɪt/' },
+    { text: 'feet', audio: new Audio(feet), phonetic: '/fit/' }
+  ],
+
+  [
+    { text: 'grin', audio: new Audio(grin), phonetic: '/ɡrɪn/' },
+    { text: 'green', audio: new Audio(green), phonetic: '/ɡrin/' }
+  ],
+
+  [
+    { text: 'hit', audio: new Audio(hit), phonetic: '/hɪt/' },
+    { text: 'heat', audio: new Audio(heat), phonetic: '/hit/' }
+  ],
+
+  [
+    { text: 'is', audio: new Audio(is), phonetic: '/ɪz/' },
+    { text: 'ease', audio: new Audio(ease), phonetic: '/iz/' }
+  ],
+
+  [
+    { text: 'mitt', audio: new Audio(mitt), phonetic: '/mɪt/' },
+    { text: 'meet', audio: new Audio(meet), phonetic: '/mit/' }
+  ],
+
+  [
+    { text: 'slip', audio: new Audio(slip), phonetic: '/slɪp/' },
+    { text: 'sleep', audio: new Audio(sleep), phonetic: '/slip/' }
+  ],
+
+  [
+    { text: 'still', audio: new Audio(still), phonetic: '/stɪl/' },
+    { text: 'steal', audio: new Audio(steal), phonetic: '/stil/' }
+  ],
+
+  [
+    { text: 'bit', audio: new Audio(bit), phonetic: '/bɪt/' },
+    { text: 'beat', audio: new Audio(beat), phonetic: '/bit/' }
+  ],
+
+  [
+    { text: 'bitch', audio: new Audio(bitch), phonetic: '/bɪʧ/' },
+    { text: 'beach', audio: new Audio(beach), phonetic: '/biʧ/' }
+  ],
+
+  [
+    { text: 'itch', audio: new Audio(itch), phonetic: '/ɪʧ/' },
+    { text: 'each', audio: new Audio(each), phonetic: '/iʧ/' }
+  ],
+
 ]
 
 export default MinimalPairs01
