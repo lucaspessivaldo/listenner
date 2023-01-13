@@ -84,58 +84,58 @@ const MinimalPairs01: WordsArray[][] = [
   ],
 
   [
-    { text: 'fill', audio: new Audio(fill), phonetic: '/fɪl/' },
-    { text: 'feel', audio: new Audio(feel), phonetic: '/fil/' }
+    { text: 'Fill', audio: new Audio(fill), phonetic: '/fɪl/' },
+    { text: 'Feel', audio: new Audio(feel), phonetic: '/fil/' }
   ],
 
   [
-    { text: 'fit', audio: new Audio(fit), phonetic: '/fɪt/' },
-    { text: 'feet', audio: new Audio(feet), phonetic: '/fit/' }
+    { text: 'Fit', audio: new Audio(fit), phonetic: '/fɪt/' },
+    { text: 'Feet', audio: new Audio(feet), phonetic: '/fit/' }
   ],
 
   [
-    { text: 'grin', audio: new Audio(grin), phonetic: '/ɡrɪn/' },
-    { text: 'green', audio: new Audio(green), phonetic: '/ɡrin/' }
+    { text: 'Grin', audio: new Audio(grin), phonetic: '/ɡrɪn/' },
+    { text: 'Green', audio: new Audio(green), phonetic: '/ɡrin/' }
   ],
 
   [
-    { text: 'hit', audio: new Audio(hit), phonetic: '/hɪt/' },
-    { text: 'heat', audio: new Audio(heat), phonetic: '/hit/' }
+    { text: 'Hit', audio: new Audio(hit), phonetic: '/hɪt/' },
+    { text: 'Heat', audio: new Audio(heat), phonetic: '/hit/' }
   ],
 
   [
-    { text: 'is', audio: new Audio(is), phonetic: '/ɪz/' },
-    { text: 'ease', audio: new Audio(ease), phonetic: '/iz/' }
+    { text: 'Is', audio: new Audio(is), phonetic: '/ɪz/' },
+    { text: 'Ease', audio: new Audio(ease), phonetic: '/iz/' }
   ],
 
   [
-    { text: 'mitt', audio: new Audio(mitt), phonetic: '/mɪt/' },
-    { text: 'meet', audio: new Audio(meet), phonetic: '/mit/' }
+    { text: 'Mitt', audio: new Audio(mitt), phonetic: '/mɪt/' },
+    { text: 'Meet', audio: new Audio(meet), phonetic: '/mit/' }
   ],
 
   [
-    { text: 'slip', audio: new Audio(slip), phonetic: '/slɪp/' },
-    { text: 'sleep', audio: new Audio(sleep), phonetic: '/slip/' }
+    { text: 'Slip', audio: new Audio(slip), phonetic: '/slɪp/' },
+    { text: 'Sleep', audio: new Audio(sleep), phonetic: '/slip/' }
   ],
 
   [
-    { text: 'still', audio: new Audio(still), phonetic: '/stɪl/' },
-    { text: 'steal', audio: new Audio(steal), phonetic: '/stil/' }
+    { text: 'Still', audio: new Audio(still), phonetic: '/stɪl/' },
+    { text: 'Steal', audio: new Audio(steal), phonetic: '/stil/' }
   ],
 
   [
-    { text: 'bit', audio: new Audio(bit), phonetic: '/bɪt/' },
-    { text: 'beat', audio: new Audio(beat), phonetic: '/bit/' }
+    { text: 'Bit', audio: new Audio(bit), phonetic: '/bɪt/' },
+    { text: 'Beat', audio: new Audio(beat), phonetic: '/bit/' }
   ],
 
   [
-    { text: 'bitch', audio: new Audio(bitch), phonetic: '/bɪʧ/' },
-    { text: 'beach', audio: new Audio(beach), phonetic: '/biʧ/' }
+    { text: 'Bitch', audio: new Audio(bitch), phonetic: '/bɪʧ/' },
+    { text: 'Beach', audio: new Audio(beach), phonetic: '/biʧ/' }
   ],
 
   [
-    { text: 'itch', audio: new Audio(itch), phonetic: '/ɪʧ/' },
-    { text: 'each', audio: new Audio(each), phonetic: '/iʧ/' }
+    { text: 'Itch', audio: new Audio(itch), phonetic: '/ɪʧ/' },
+    { text: 'Each', audio: new Audio(each), phonetic: '/iʧ/' }
   ],
 
 ]
