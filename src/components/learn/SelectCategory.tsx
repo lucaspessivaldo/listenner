@@ -11,6 +11,12 @@ export default function SelectCategory() {
   const selectedTopic = useSelector((state: RootState) => state.selectedTopic.value)
   const dispatch = useDispatch()
 
+  const setCategory = (category: string) => {
+    dispatch(setSelectedTopic(category))
+    localStorage.setItem('category', category)
+  }
+
+
   return (
     <div className='w-full max-w-[784px] h-11 border-2 border-black rounded-md mb-5'>
       <DropdownMenu.Root >
@@ -27,21 +33,21 @@ export default function SelectCategory() {
           <DropdownMenu.Content sideOffset={5} className='bg-white py-1 w-screen max-w-[800px] px-2 rounded-lg'>
 
             <DropdownMenu.Item
-              onClick={() => dispatch(setSelectedTopic('Alphabet'))}
+              onClick={() => setCategory('Alphabet')}
               className="rounded-md p-1 border-2 border-black mb-1 font-inter font-semibold cursor-pointer text-base text-zinc-900 focus:bg-stone-300/80 focus:outline-none"
             >
               Alphabet
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
-              onClick={() => dispatch(setSelectedTopic('Number'))}
+              onClick={() => setCategory('Number')}
               className="rounded-md p-1 border-2 border-black mb-1 font-inter font-semibold cursor-pointer text-base text-zinc-900 focus:bg-stone-300/80 focus:outline-none"
             >
               Number
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
-              onClick={() => dispatch(setSelectedTopic('Minimal Pair'))}
+              onClick={() => setCategory('Minimal Pair')}
               className="rounded-md p-1 border-2 border-black font-inter font-semibold cursor-pointer text-base text-zinc-900 focus:bg-stone-300/80 focus:outline-none"
             >
               Minimal Pair

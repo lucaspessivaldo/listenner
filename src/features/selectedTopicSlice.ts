@@ -6,7 +6,7 @@ export interface selectedTopicsState {
 }
 
 const initialState: selectedTopicsState = {
-  value: 'Minimal Pair',
+  value: localStorage.getItem('category') || 'Minimal Pair',
 }
 
 export const selectedTopic = createSlice({
