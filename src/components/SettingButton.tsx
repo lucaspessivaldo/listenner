@@ -37,7 +37,7 @@ export default function SettingButton(_props: Props) {
             className={
               `border-2 border-black radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down
               w-48 rounded-lg px-1.5 py-1 shadow-md md:w-56
-              bg-white dark:bg-gray-800`
+              bg-white`
             }
           >
 
