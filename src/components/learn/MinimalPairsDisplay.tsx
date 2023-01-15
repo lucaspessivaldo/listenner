@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { WordsArray } from "../../common/types";
 import MinimalPairs01 from "../../assets/audios/minimalPairs/01/MinimalPairs01"
 import MinimalPairs02 from "../../assets/audios/minimalPairs/02/MinimalPairs02";
@@ -8,6 +8,8 @@ import rightsound from '../../assets/audios/right-sound.wav'
 import wrongsound from '../../assets/audios/error-sound.wav'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
+import type { RootState } from '../../app/store'
+import { useSelector } from 'react-redux'
 
 const right = new Audio(rightsound)
 const wrong = new Audio(wrongsound)
@@ -32,6 +34,10 @@ export default function MinimalPairsDisplay() {
   const [rightAnswer, setRightAnswer] = useState<WordsArray>(currentWords[0]);
   const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
   const [selectedButton, setSelectedButton] = useState<String>('')
+  const keyboardStateInput = useSelector((state: RootState) => state.selectedTopic.keyboardInput)
+
+  const nextQuestionButtonRef = useRef<HTMLButtonElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const restartQuestion = () => {
     const words = getRandomPosition(MinimalPairWords[minimalPairSelected])
@@ -41,16 +47,26 @@ export default function MinimalPairsDisplay() {
     setSelectedButton('')
     rightWord.audio.play()
 
+    if (inputRef.current != null) {
+      inputRef.current.value = ''
+      inputRef.current.focus()
+    }
+
     setRightAnswer(rightWord)
     setCurrentWords(words)
   }
 
   const checkAnswer = () => {
+    if (selectedButton === '') return
     if (isAnswerd) {
       setIsAnswerd(false)
       setSelectedButton('')
       restartQuestion()
       return
+    }
+
+    if (nextQuestionButtonRef.current != null) {
+      nextQuestionButtonRef.current.focus()
     }
     const isRightAnswer = selectedButton === rightAnswer.text
 
@@ -58,7 +74,6 @@ export default function MinimalPairsDisplay() {
     else wrong.play()
 
     setIsAnswerd(true)
-    console.log(isRightAnswer)
   }
 
   useEffect(() => {
@@ -134,9 +149,23 @@ export default function MinimalPairsDisplay() {
         ))}
       </div>
 
+      {keyboardStateInput === 'true' &&
+        <input
+          type="text"
+          ref={inputRef}
+          className="mb-7 outline-none border-b-2 border-stone-400 capitalize"
+          placeholder="Type here"
+          onChange={(event) => {
+            if (event.target.value.toLocaleLowerCase() === rightAnswer.text.toLocaleLowerCase()) {
+              setSelectedButton(rightAnswer.text)
+            }
+          }}
+        />
+      }
+
       <button
+        ref={nextQuestionButtonRef}
         className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900`}
-        disabled={!isAnswerd}
         onClick={() => checkAnswer()}
       >
         next question

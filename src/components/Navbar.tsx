@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import SettingButton from './SettingButton'
 import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
@@ -25,7 +26,11 @@ export default function Navbar() {
             Get Started
           </button>
         </Link>
+
+        {!isHomepage && <SettingButton />}
+
       </nav>
     </header>
   )
 }
+
