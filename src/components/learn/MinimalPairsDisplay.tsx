@@ -3,13 +3,13 @@ import { WordsArray } from "../../common/types";
 import MinimalPairs01 from "../../assets/audios/minimalPairs/01/MinimalPairs01"
 import MinimalPairs02 from "../../assets/audios/minimalPairs/02/MinimalPairs02";
 import SpeakerButton from "./SpeakerButton";
-import ButtonMinimalPairs from "./ButtonMinimalPairs";
 import rightsound from '../../assets/audios/right-sound.wav'
 import wrongsound from '../../assets/audios/error-sound.wav'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import type { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
+import QuestionButton from '../../components/learn/QuestionButton'
 
 const right = new Audio(rightsound)
 const wrong = new Audio(wrongsound)
@@ -136,7 +136,7 @@ export default function MinimalPairsDisplay() {
 
       <div className='mb-7 grid grid-cols-1 sm:grid-cols-2'>
         {currentWords.map(word => (
-          <ButtonMinimalPairs
+          <QuestionButton
             text={word.text}
             phonetic={word.phonetic}
             audio={word.audio}
@@ -153,7 +153,7 @@ export default function MinimalPairsDisplay() {
         <input
           type="text"
           ref={inputRef}
-          className="mb-7 outline-none border-b-2 border-stone-400 capitalize"
+          className="mb-7 outline-none border-b border-stone-400 capitalize"
           placeholder="Type here"
           onChange={(event) => {
             if (event.target.value.toLocaleLowerCase() === rightAnswer.text.toLocaleLowerCase()) {
@@ -165,7 +165,7 @@ export default function MinimalPairsDisplay() {
 
       <button
         ref={nextQuestionButtonRef}
-        className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900`}
+        className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900 flex justify-center items-center p-6`}
         onClick={() => checkAnswer()}
       >
         next question

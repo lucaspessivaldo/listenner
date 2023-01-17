@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import SettingButton from './SettingButton'
 import { Link, useLocation } from 'react-router-dom'
+import SettingButton from './SettingButton'
 
 export default function Navbar() {
   const [isHomepage, setIsHomepage] = useState(true)

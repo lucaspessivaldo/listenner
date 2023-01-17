@@ -22,7 +22,7 @@ interface MyObject {
 
 const words: MyObject = { alphabet, number }
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 function getRandomIntInclusive(max: number) {
   const min = 0
@@ -43,7 +43,9 @@ export default function MainDisplay() {
   const [rightAnswer, setRightAnswer] = useState<WordsArray>(words[selectedTopic.toLowerCase()])
   const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
   const [selectedButton, setSelectedButton] = useState<String>('')
-
+  const keyboardStateInput = useSelector((state: RootState) => state.selectedTopic.keyboardInput)
+  const nextQuestionButtonRef = useRef<HTMLButtonElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const restartQuestion = () => {
     let firstWord = getRandomPosition(words[selectedTopic.toLowerCase()])
@@ -54,6 +56,11 @@ export default function MainDisplay() {
 
     while (secondWord.text === firstWord.text) {
       secondWord = getRandomPosition(words[selectedTopic.toLowerCase()])
+    }
+
+    if (inputRef.current != null) {
+      inputRef.current.value = ''
+      inputRef.current.focus()
     }
 
     const array = [firstWord, secondWord]
@@ -70,6 +77,11 @@ export default function MainDisplay() {
       restartQuestion()
       return
     }
+
+    if (nextQuestionButtonRef.current != null) {
+      nextQuestionButtonRef.current.focus()
+    }
+
     const isRightAnswer = selectedButton === rightAnswer.text
 
     if (isRightAnswer) right.play()
@@ -101,6 +113,7 @@ export default function MainDisplay() {
       <div className='mb-7 grid grid-cols-1 sm:grid-cols-2'>
         {currentWords.map(word => (
           <QuestionButton
+            audio={word.audio}
             setSelectedButton={setSelectedButton}
             isSelected={word.text === selectedButton}
             text={word.text}
@@ -111,9 +124,23 @@ export default function MainDisplay() {
         ))}
       </div>
 
+      {keyboardStateInput === 'true' &&
+        <input
+          type="text"
+          ref={inputRef}
+          className="mb-7 outline-none border-b border-stone-400 capitalize"
+          placeholder="Type here"
+          onChange={(event) => {
+            if (event.target.value.toLocaleLowerCase() === rightAnswer.text.toLocaleLowerCase()) {
+              setSelectedButton(rightAnswer.text)
+            }
+          }}
+        />
+      }
+
       <button
+        ref={nextQuestionButtonRef}
         className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900`}
-        disabled={!isAnswerd}
         onClick={() => checkAnswer()}
       >
         next question
