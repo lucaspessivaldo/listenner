@@ -1,4 +1,4 @@
-import { WordsArray } from '../../../common/types'
+import { WordsArray } from '../../../../common/types'
 
 import zero from './0.mp3'
 import one from './1.mp3'

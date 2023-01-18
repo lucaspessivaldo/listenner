@@ -1,4 +1,4 @@
-import { WordsArray } from '../../../common/types'
+import { WordsArray } from '../../../../common/types'
 
 import a from './a.mp3'
 import b from './b.mp3'
