@@ -4,7 +4,7 @@ import type { RootState } from '../../app/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSelectedTopic } from '../../features/selectedTopicSlice'
 
-const categories = ['Alphabet', 'Number', 'Minimal Pair']
+const categories = ['Alphabet', 'Numbers', 'Minimal Pair']
 
 export default function SelectCategory() {
   const selectedTopic = useSelector((state: RootState) => state.selectedTopic.value)

@@ -1,36 +1,23 @@
 import { useEffect, useState, useRef } from "react";
-import { WordsArray } from "../../common/types";
-import MinimalPairs01 from "../../assets/audios/minimalPairs/01/MinimalPairs01"
-import MinimalPairs02 from "../../assets/audios/minimalPairs/02/MinimalPairs02";
-import SpeakerButton from "./SpeakerButton";
-import rightsound from '../../assets/audios/right-sound.wav'
-import wrongsound from '../../assets/audios/error-sound.wav'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
 import type { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
+
+import { getRandomMinimalPairWords } from "../../common/getRandomWord";
+import { WordsArray } from "../../common/types";
+
 import QuestionButton from '../../components/learn/QuestionButton'
+import SpeakerButton from "./SpeakerButton";
 
-const right = new Audio(rightsound)
-const wrong = new Audio(wrongsound)
-const MinimalPairWords = [MinimalPairs01, MinimalPairs02]
-const MinimalPairCategory = ['/ɪ/ and /i:/', '/æ/ and /e/']
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 
-function getRandomIntInclusive(max: number) {
-  const min = 0
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+import { wrongSound, rightSound } from "../../assets/audios/sounds/sounds";
+import { minimalPairWords, minimalPairCategorys } from "../../assets/audios/minimalPairs/MinimalPairsWords";
 
-function getRandomPosition(array: WordsArray[][]) {
-  const randomNumber = getRandomIntInclusive(array.length - 1)
-  const randomWord = array[randomNumber]
-  return randomWord
-}
 
 export default function MinimalPairsDisplay() {
   const [minimalPairSelected, setMinimalPairSelected] = useState(0);
-  const [currentWords, setCurrentWords] = useState<WordsArray[]>(getRandomPosition(MinimalPairWords[minimalPairSelected]));
+  const [currentWords, setCurrentWords] = useState<WordsArray[]>(getRandomMinimalPairWords(minimalPairWords[minimalPairSelected]));
   const [rightAnswer, setRightAnswer] = useState<WordsArray>(currentWords[0]);
   const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
   const [selectedButton, setSelectedButton] = useState<String>('')
@@ -40,7 +27,7 @@ export default function MinimalPairsDisplay() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const restartQuestion = () => {
-    const words = getRandomPosition(MinimalPairWords[minimalPairSelected])
+    const words = getRandomMinimalPairWords(minimalPairWords[minimalPairSelected])
     const rightWord = [...words].sort(() => Math.random() - 0.5)[0]
 
     setIsAnswerd(false)
@@ -70,8 +57,8 @@ export default function MinimalPairsDisplay() {
     }
     const isRightAnswer = selectedButton === rightAnswer.text
 
-    if (isRightAnswer) right.play()
-    else wrong.play()
+    if (isRightAnswer) rightSound.play()
+    else wrongSound.play()
 
     setIsAnswerd(true)
   }
@@ -94,7 +81,7 @@ export default function MinimalPairsDisplay() {
 
           <DropdownMenu.Trigger asChild>
             <div className="cursor-pointer text-black  px-5 flex items-center justify-between w-full h-full font-inter font-semibold">
-              {MinimalPairCategory[minimalPairSelected]}
+              {minimalPairCategorys[minimalPairSelected]}
               <ChevronDownIcon />
             </div>
           </DropdownMenu.Trigger>

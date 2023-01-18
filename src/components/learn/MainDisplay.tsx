@@ -1,61 +1,37 @@
+import { useEffect, useState, useRef } from 'react'
+import { getRandomWord } from '../../common/getRandomWord'
 import type { WordsArray } from '../../common/types'
+
 import QuestionButton from '../../components/learn/QuestionButton'
 import SpeakerButton from '../../components/learn/SpeakerButton'
 
 import type { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
 
-import alphabet from '../../assets/audios/alphabet/alphabet'
-import number from '../../assets/audios/numbers/numbers'
-
-import rightsound from '../../assets/audios/right-sound.wav'
-import wrongsound from '../../assets/audios/error-sound.wav'
-
-const right = new Audio(rightsound)
-const wrong = new Audio(wrongsound)
-
-interface MyObject {
-  alphabet: WordsArray[];
-  number: WordsArray[];
-  [key: string]: any;
-}
-
-const words: MyObject = { alphabet, number }
-
-import { useEffect, useState, useRef } from 'react'
-
-function getRandomIntInclusive(max: number) {
-  const min = 0
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function getRandomPosition(array: WordsArray[]) {
-  const randomNumber = getRandomIntInclusive(array.length - 1)
-  const randomWord = array[randomNumber]
-  return randomWord
-}
-
+import { wrongSound, rightSound } from "../../assets/audios/sounds/sounds";
+import { words } from '../../assets/audios/words/words'
 
 export default function MainDisplay() {
   const selectedTopic = useSelector((state: RootState) => state.selectedTopic.value)
+  const keyboardStateInput = useSelector((state: RootState) => state.selectedTopic.keyboardInput)
+
   const [currentWords, setCurrentWords] = useState<WordsArray[]>(words[selectedTopic.toLowerCase()])
   const [rightAnswer, setRightAnswer] = useState<WordsArray>(words[selectedTopic.toLowerCase()])
   const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
   const [selectedButton, setSelectedButton] = useState<String>('')
-  const keyboardStateInput = useSelector((state: RootState) => state.selectedTopic.keyboardInput)
+
   const nextQuestionButtonRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const restartQuestion = () => {
-    let firstWord = getRandomPosition(words[selectedTopic.toLowerCase()])
-    let secondWord = getRandomPosition(words[selectedTopic.toLowerCase()])
+    let firstWord = getRandomWord(words[selectedTopic.toLowerCase()])
+    let secondWord = getRandomWord(words[selectedTopic.toLowerCase()])
     setIsAnswerd(false)
     setSelectedButton('')
     firstWord.audio.play()
 
     while (secondWord.text === firstWord.text) {
-      secondWord = getRandomPosition(words[selectedTopic.toLowerCase()])
+      secondWord = getRandomWord(words[selectedTopic.toLowerCase()])
     }
 
     if (inputRef.current != null) {
@@ -84,8 +60,8 @@ export default function MainDisplay() {
 
     const isRightAnswer = selectedButton === rightAnswer.text
 
-    if (isRightAnswer) right.play()
-    else wrong.play()
+    if (isRightAnswer) rightSound.play()
+    else wrongSound.play()
 
     setIsAnswerd(true)
   }
