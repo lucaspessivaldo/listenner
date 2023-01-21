@@ -16,9 +16,8 @@ export default function SettingButton(_props: Props) {
   const dispatch = useDispatch()
 
   const setKeyboard = (state: boolean) => {
-    const keyboardState = state ? 'true' : 'false'
-    dispatch(setKeyboardInput(keyboardState))
-    localStorage.setItem('keyboardInput', keyboardState)
+    dispatch(setKeyboardInput(state))
+    localStorage.setItem('keyboardInput', JSON.stringify(state))
   }
 
   return (
@@ -43,7 +42,7 @@ export default function SettingButton(_props: Props) {
           >
 
             <DropdownMenuPrimitive.CheckboxItem
-              checked={keyboardStateInput === 'true' ? true : false}
+              checked={keyboardStateInput}
               onCheckedChange={(state) => {
                 if (state !== "indeterminate") {
                   setKeyboard(state)
@@ -57,7 +56,7 @@ export default function SettingButton(_props: Props) {
                 Keyboard input
               </span>
 
-              {keyboardStateInput === 'true' ? (
+              {keyboardStateInput ? (
                 <CheckIcon className="mr-2 h-3.5 w-3.5 text-green-600" />
               ) : (
                 <MinusIcon className="mr-2 h-3.5 w-3.5 font-bold text-red-600" />

@@ -8,8 +8,10 @@ import SpeakerButton from '../../components/learn/SpeakerButton'
 import type { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
 
-import { wrongSound, rightSound } from "../../assets/audios/sounds/sounds";
-import { words } from '../../assets/audios/words/words'
+import { wrongSound, rightSound } from "../../data/sounds";
+import { words } from '../../data/words'
+import KeyboardInput from './KeyboardInput'
+
 
 export default function MainDisplay() {
   const selectedTopic = useSelector((state: RootState) => state.selectedTopic.value)
@@ -47,6 +49,7 @@ export default function MainDisplay() {
   }
 
   const checkAnswer = () => {
+    if (selectedButton === '') return
     if (isAnswerd) {
       setIsAnswerd(false)
       setSelectedButton('')
@@ -100,19 +103,7 @@ export default function MainDisplay() {
         ))}
       </div>
 
-      {keyboardStateInput === 'true' &&
-        <input
-          type="text"
-          ref={inputRef}
-          className="mb-7 outline-none border-b border-stone-400 capitalize"
-          placeholder="Type here"
-          onChange={(event) => {
-            if (event.target.value.toLocaleLowerCase() === rightAnswer.text.toLocaleLowerCase()) {
-              setSelectedButton(rightAnswer.text)
-            }
-          }}
-        />
-      }
+      {keyboardStateInput && <KeyboardInput ref={inputRef} rightAnswer={rightAnswer} setSelectedButton={setSelectedButton} />}
 
       <button
         ref={nextQuestionButtonRef}

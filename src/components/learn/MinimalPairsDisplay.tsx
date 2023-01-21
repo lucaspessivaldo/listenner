@@ -7,12 +7,11 @@ import { WordsArray } from "../../common/types";
 
 import QuestionButton from '../../components/learn/QuestionButton'
 import SpeakerButton from "./SpeakerButton";
+import KeyboardInput from "./KeyboardInput";
 
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
-
-import { wrongSound, rightSound } from "../../assets/audios/sounds/sounds";
-import { minimalPairWords, minimalPairCategorys } from "../../assets/audios/minimalPairs/MinimalPairsWords";
+import { wrongSound, rightSound } from "../../data/sounds";
+import { minimalPairWords } from "../../data/minimalPairsWords";
+import SelectCategoryMiminalPairs from "./SelectCategoryMiminalPairs";
 
 
 export default function MinimalPairsDisplay() {
@@ -20,6 +19,7 @@ export default function MinimalPairsDisplay() {
   const [currentWords, setCurrentWords] = useState<WordsArray[]>(getRandomMinimalPairWords(minimalPairWords[minimalPairSelected]));
   const [rightAnswer, setRightAnswer] = useState<WordsArray>(currentWords[0]);
   const [isAnswerd, setIsAnswerd] = useState<Boolean>(false)
+
   const [selectedButton, setSelectedButton] = useState<String>('')
   const keyboardStateInput = useSelector((state: RootState) => state.selectedTopic.keyboardInput)
 
@@ -75,43 +75,7 @@ export default function MinimalPairsDisplay() {
 
   return (
     <>
-
-      <div className='w-full max-w-[784px] h-11 border-2 border-black rounded-md mb-5'>
-        <DropdownMenu.Root >
-
-          <DropdownMenu.Trigger asChild>
-            <div className="cursor-pointer text-black  px-5 flex items-center justify-between w-full h-full font-inter font-semibold">
-              {minimalPairCategorys[minimalPairSelected]}
-              <ChevronDownIcon />
-            </div>
-          </DropdownMenu.Trigger>
-
-          <DropdownMenu.Portal>
-
-            <DropdownMenu.Content sideOffset={5} className='bg-white py-1 w-screen max-w-[800px] px-2 rounded-lg'>
-
-              <DropdownMenu.Item
-                onClick={() => setMinimalPairSelected(0)}
-                className="rounded-md p-1 border-2 border-black mb-1 font-inter font-semibold cursor-pointer text-base text-zinc-900 focus:bg-stone-300/80 focus:outline-none"
-              >
-                /ɪ/ and /i:/
-              </DropdownMenu.Item>
-
-              <DropdownMenu.Item
-                onClick={() => setMinimalPairSelected(1)}
-                className="rounded-md p-1 border-2 border-black mb-1 font-inter font-semibold cursor-pointer text-base text-zinc-900 focus:bg-stone-300/80 focus:outline-none"
-              >
-                /æ/ and /e/
-              </DropdownMenu.Item>
-
-              <DropdownMenu.Arrow className="DropdownMenuArrow" />
-            </DropdownMenu.Content>
-
-          </DropdownMenu.Portal>
-
-        </DropdownMenu.Root>
-
-      </div>
+      <SelectCategoryMiminalPairs minimalPairSelected={minimalPairSelected} setMinimalPairSelected={setMinimalPairSelected} />
 
       <p className='font-inter text-2xl'>What did you listen to?</p>
 
@@ -136,19 +100,7 @@ export default function MinimalPairsDisplay() {
         ))}
       </div>
 
-      {keyboardStateInput === 'true' &&
-        <input
-          type="text"
-          ref={inputRef}
-          className="mb-7 outline-none border-b border-stone-400 capitalize"
-          placeholder="Type here"
-          onChange={(event) => {
-            if (event.target.value.toLocaleLowerCase() === rightAnswer.text.toLocaleLowerCase()) {
-              setSelectedButton(rightAnswer.text)
-            }
-          }}
-        />
-      }
+      {keyboardStateInput && <KeyboardInput ref={inputRef} rightAnswer={rightAnswer} setSelectedButton={setSelectedButton} />}
 
       <button
         ref={nextQuestionButtonRef}
