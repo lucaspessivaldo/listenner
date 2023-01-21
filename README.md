@@ -1,9 +1,10 @@
 # Listenner
 
 <p>
-  <img alt="" src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" />
-  <img alt="" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
-  <img alt="" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img alt="" src="https://img.shields.io/badge/ReactJS-black?style=flat-square&logo=react&logoColor=white" />
+  <img alt="" src="https://img.shields.io/badge/TypeScript-black?style=flat-square&logo=typescript&logoColor=white" />
+  <img alt="" src="https://img.shields.io/badge/Tailwind-black?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <img alt="" src="https://img.shields.io/badge/Licence-MIT-gray?style=flat-squar&labelColor=black" />
 </p>
 
 An open source website for improving English listening skills. is a platform
