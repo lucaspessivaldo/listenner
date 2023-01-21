@@ -3,12 +3,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface selectedTopicsState {
   value: string,
-  keyboardInput: string
+  keyboardInput: boolean;
 }
 
 const initialState: selectedTopicsState = {
   value: localStorage.getItem('category') || 'Minimal Pair',
-  keyboardInput: localStorage.getItem('keyboardInput') || 'false',
+  keyboardInput: localStorage.getItem('keyboardInput') === 'true' ? true : false
 }
 
 export const selectedTopic = createSlice({
@@ -18,7 +18,7 @@ export const selectedTopic = createSlice({
     setSelectedTopic: (state, action: PayloadAction<string>) => {
       state.value = action.payload
     },
-    setKeyboardInput: (state, action: PayloadAction<string>) => {
+    setKeyboardInput: (state, action: PayloadAction<boolean>) => {
       state.keyboardInput = action.payload
     }
   },
