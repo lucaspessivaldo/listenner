@@ -2,15 +2,16 @@ import { useEffect, useState, useRef } from 'react'
 import { getRandomWord } from '../../common/getRandomWord'
 import type { WordsArray } from '../../common/types'
 
-import QuestionButton from '../../components/learn/QuestionButton'
-import SpeakerButton from '../../components/learn/SpeakerButton'
+import QuestionButton from './QuestionButton'
+import SpeakerButton from './SpeakerButton'
+import KeyboardInput from './KeyboardInput'
+import NextQuestionButton from './NextQuestionButton'
 
 import type { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
 
 import { wrongSound, rightSound } from "../../data/sounds";
 import { words } from '../../data/words'
-import KeyboardInput from './KeyboardInput'
 
 
 export default function MainDisplay() {
@@ -105,13 +106,8 @@ export default function MainDisplay() {
 
       {keyboardStateInput && <KeyboardInput ref={inputRef} rightAnswer={rightAnswer} setSelectedButton={setSelectedButton} />}
 
-      <button
-        ref={nextQuestionButtonRef}
-        className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900`}
-        onClick={() => checkAnswer()}
-      >
-        next question
-      </button>
+      <NextQuestionButton checkAnswer={checkAnswer} ref={nextQuestionButtonRef} isAnswerd={isAnswerd} />
+
     </>
   )
 }

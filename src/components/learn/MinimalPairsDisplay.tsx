@@ -5,13 +5,14 @@ import { useSelector } from 'react-redux'
 import { getRandomMinimalPairWords } from "../../common/getRandomWord";
 import { WordsArray } from "../../common/types";
 
-import QuestionButton from '../../components/learn/QuestionButton'
+import QuestionButton from './QuestionButton'
 import SpeakerButton from "./SpeakerButton";
+import SelectCategoryMiminalPairs from "./SelectCategoryMiminalPairs";
+import NextQuestionButton from "./NextQuestionButton";
 import KeyboardInput from "./KeyboardInput";
 
 import { wrongSound, rightSound } from "../../data/sounds";
 import { minimalPairWords } from "../../data/minimalPairsWords";
-import SelectCategoryMiminalPairs from "./SelectCategoryMiminalPairs";
 
 
 export default function MinimalPairsDisplay() {
@@ -102,13 +103,7 @@ export default function MinimalPairsDisplay() {
 
       {keyboardStateInput && <KeyboardInput ref={inputRef} rightAnswer={rightAnswer} setSelectedButton={setSelectedButton} />}
 
-      <button
-        ref={nextQuestionButtonRef}
-        className={`${!isAnswerd ? 'opacity-50' : 'opacity-100'} bg-black text-white font-inter font-semibold  w-64 h-11 rounded-lg hover:bg-zinc-900 flex justify-center items-center p-6`}
-        onClick={() => checkAnswer()}
-      >
-        next question
-      </button>
+      <NextQuestionButton checkAnswer={checkAnswer} ref={nextQuestionButtonRef} isAnswerd={isAnswerd} />
     </>
   )
 }
